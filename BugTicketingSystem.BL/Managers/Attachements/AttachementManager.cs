@@ -110,7 +110,7 @@ namespace BugTicketingSystem.BL.Managers.Attachements
             {
                 // this means tha the user isn't assigned with this bug before 
 
-                return GeneralResult.Fail(GenerateArrayOfErrors("this buf is not found"));
+                return GeneralResult.Fail(GenerateArrayOfErrors("this bug is not found"));
 
             }
             _unitOfWork._attachementRepo.Delete(attachement);

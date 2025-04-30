@@ -34,7 +34,7 @@ namespace BugTicketingSystem.PL.Controllers
             }
             return TypedResults.BadRequest(result);
         }
-        //----------------------------------------------------GetBugWithoutJoin------------------------------------------------------------------------------//
+        //----------------------------------------------------GetAllBugsWithoutJoin------------------------------------------------------------------------------//
         [HttpGet]
         [Authorize]
         public async Task<Results<Ok<GeneralResult<List<BugReadDTO>>>, NotFound>> GetAllAsync()
@@ -84,12 +84,12 @@ namespace BugTicketingSystem.PL.Controllers
         //----------------------------------------------------UnAssign Bug To User------------------------------------------------------------------------------//
         [HttpDelete("{bug_Id}/assignees/{user_Id}")]
         [Authorize]
-        public async Task<Results<Ok<GeneralResult>, BadRequest<GeneralResult>>> UnAssignUserFromBug(Guid bug_Id, string attachement_Id)
+        public async Task<Results<Ok<GeneralResult>, BadRequest<GeneralResult>>> UnAssignUserFromBug(Guid bug_Id, string user_Id)
         {
             UserBugAssignDTO userBugAssignDTO = new UserBugAssignDTO
             {
                 Bug_Id = bug_Id,
-                User_Id = attachement_Id,
+                User_Id = user_Id,
             };
             var result = await _userBugsManager.UnAssignUserFromABugAsync(userBugAssignDTO);
             if (result.Success)
