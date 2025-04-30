@@ -28,11 +28,7 @@ POST/api/Users/Login
 | `userName` | `string` | **Required**. |
 | `password` | `string` | **Required**. |
 
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
-
-#### Get All projects.
+#### Get All projects
 
 ```http
 GET/api/projects
@@ -76,6 +72,81 @@ POST/api/Bug
 | `project_Id`  | `Guid`   | **Required**. project whic hthe bug will be assigned to |
 | `description` | `string` | **Required**.                                           |
 
-## Documentation
+#### List all bugs
 
-[Documentation](https://linktodocumentation)
+```http
+GET/api/Bug
+```
+
+#### View detailed info on a specific bug
+
+```http
+GET/api/Bug/{id}
+```
+
+| parameter | Type   | Description          |
+| :-------- | :----- | :------------------- |
+| `id`      | `Guid` | **Required**. Bug_id |
+
+#### Assign a user to a bug
+
+```http
+POST/api/Bug/{bug_Id}/assignees
+```
+
+| parameter | Type   | Description          |
+| :-------- | :----- | :------------------- |
+| `bug_Id`  | `Guid` | **Required**. Bug_id |
+
+| Body      | Type     | Description             |
+| :-------- | :------- | :---------------------- |
+| `user_Id` | `string` | **Required**. user's id |
+
+#### Unassign a user from a bug
+
+```http
+DELETE/api/Bug/{bug_Id}/assignees/{user_Id}
+```
+
+| parameter | Type   | Description             |
+| :-------- | :----- | :---------------------- |
+| `bug_Id`  | `Guid` | **Required**. Bug_id    |
+| `user_Id` | `Guid` | **Required**. user's id |
+
+#### Upload Attachment: Add an attachment to a bug
+
+```http
+POST/api/Bug/{bug_Id}/attachments
+```
+
+| parameter | Type   | Description          |
+| :-------- | :----- | :------------------- |
+| `bug_Id`  | `Guid` | **Required**. Bug_id |
+
+| Body   | Type   | Description   |
+| :----- | :----- | :------------ |
+| `File` | `File` | **Required**. |
+
+#### Get Attachments for Bug: Retrieve all attachments for a bug
+
+```http
+GET/api/Bug/{id}/attachments
+```
+
+| parameter | Type   | Description          |
+| :-------- | :----- | :------------------- |
+| `Id`      | `Guid` | **Required**. Bug_id |
+
+#### Delete Attachment: Remove an attachment from a bug
+
+```http
+DELETE/api/Bug/{bug_Id}/attachments/{attachement_Id}
+```
+
+| parameter | Type   | Description          |
+| :-------- | :----- | :------------------- |
+| `bug_Id`  | `Guid` | **Required**. Bug_id |
+
+| Body             | Type   | Description                  |
+| :--------------- | :----- | :--------------------------- |
+| `attachement_Id` | `Guid` | **Required**. attachement_Id |
